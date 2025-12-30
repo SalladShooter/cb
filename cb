@@ -26,7 +26,7 @@ while getopts "hf:e:" opt; do
 done
 
 if [ -z "$filename" ]; then
-  echo "Filename is required" >&2
+  echo "cb: missing filename" >&2
   exit 1
 fi
 
