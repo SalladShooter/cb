@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+show_help() {
+  echo "cb (createbash)
+  Creates Bash file with shebang
+
+  -h            : Help Command
+  -f (filename) : Enter filename you want to create
+  -e (editor)   : Opens editor after file creation
+  "
+}
+
+while getopts "hf:e:" opt; do
+  case "$opt" in
+  h)
+    show_help
+    exit 0
+    ;;
+  f)
+    filename="$OPTARG"
+    ;;
+  e)
+    editor="$OPTARG"
+    ;;
+  esac
+done
+
+if [ -z "$filename" ]; then
+  echo -e "Error: filename is required\n"
+  show_help
+  exit 1
+fi
+
+echo "#!/usr/bin/env bash" >"$filename"
+chmod +x "$filename"
+
+if [ -n "$editor" ]; then
+  "$editor" "$filename"
+fi
