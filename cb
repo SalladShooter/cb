@@ -26,8 +26,7 @@ while getopts "hf:e:" opt; do
 done
 
 if [ -z "$filename" ]; then
-  echo -e "Error: filename is required\n"
-  show_help
+  echo "Filename is required" >&2
   exit 1
 fi
 
